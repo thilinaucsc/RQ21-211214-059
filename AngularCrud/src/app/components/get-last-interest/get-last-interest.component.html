@@ -1,0 +1,33 @@
+<p>get last 10 interest works!</p>
+<div style="width: 400px;">
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="customerId">Customer Id</label>
+      <input type="text" class="form-control" id="customerId" required [(ngModel)]="commonRequest.customerId" name="customerId">
+    </div>
+
+    <div class="form-group">
+      <label for="accountNo">Account No</label>
+      <input type="text" class="form-control" id="accountNo" required [(ngModel)]="commonRequest.accountNo" name="accountNo">
+    </div>
+    <button type="submit" class="btn btn-success">Submit</button>
+    <div class="panel-body" *ngIf="(allInterestData && allInterestData.forEach.length != 1)">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>Amount</th>
+          <th>Date</th>
+          <th>Type</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let interestData of allInterestData | async">
+          <td>{{interestData.amount}}</td>
+          <td>{{interestData.date}}</td>
+          <td>{{interestData.type}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </form>
+</div>
